@@ -10,10 +10,13 @@ def average(scores):
 
 
 def curve(scores, points, allow_negative=False):
+
+def curve(scores, points, negative_points_allowed=True):
     """
     Return a new list of scores after adding `points` to each.
     If allow_negative is False, scores are clamped at a minimum of 0.
     """
+
     if allow_negative:
         return [s + points for s in scores]
     return [max(0, s + points) for s in scores]
@@ -31,3 +34,7 @@ def letter_grade(score):
         return "D"
     else:
         return "F"
+
+    if not negative_points_allowed and points < 0:
+        points = 0
+    return [max(0, s + points) for s in scores]
