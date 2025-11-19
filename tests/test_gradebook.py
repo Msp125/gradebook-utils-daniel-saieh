@@ -4,6 +4,7 @@ from gradebook.gradebook import average, curve, letter_grade
 def test_average():
     assert average([100, 80, 60]) == 80.0
     assert average([]) == 0.0
+<<<<<<< HEAD
 
 
 def test_curve():
@@ -21,3 +22,14 @@ def test_letter_grade():
     assert letter_grade(75) == "C"
     assert letter_grade(65) == "D"
     assert letter_grade(50) == "F"
+=======
+def test_curve_basic():
+    assert curve([70, 80, 90], 5) == [75, 85, 95]
+def test_curve_clamps_to_zero_on_negative_results():
+    # Penalize: some scores would go negative → clamp to 0
+    assert curve([10, 3, 0], -5) == [5, 0, 0]
+    # Already-negative inputs: small positive curve still clamps
+    assert curve([-2], 1) == [0]
+    # Positive curve still behaves as before
+    assert curve([70, 80, 90], 5) == [75, 85, 95]
+>>>>>>> 913fef7 (add test suite to test the bugfix for curve() function and the test passes)
